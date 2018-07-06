@@ -37,8 +37,8 @@ describe('Logger', () => {
     });
     // calling the mutation here so the erros will be ordered.
     const testQuery = 'mutation { species, stuff }';
-    const expected0 = 'Error in resolver RootMutation.species\noops!';
-    const expected1 = 'Error in resolver RootMutation.stuff\noh noes!';
+    const expected0 = 'Error in resolver RootMutation.species: oops!';
+    const expected1 = 'Error in resolver RootMutation.stuff: oh noes!';
     graphql(jsSchema, testQuery).then(() => {
       assert.equal(logger.errors.length, 2);
       assert.equal(logger.errors[0].message, expected0);
@@ -149,8 +149,8 @@ describe('Logger', () => {
     });
 
     const testQuery = 'mutation { species, stuff }';
-    const expected0 = 'Error in resolver RootMutation.species\noops!';
-    const expected1 = 'Error in resolver RootMutation.stuff\noh noes!';
+    const expected0 = 'Error in resolver RootMutation.species: oops!';
+    const expected1 = 'Error in resolver RootMutation.stuff: oh noes!';
     graphql(jsSchema, testQuery).then(() => {
       assert.equal(logger.errors.length, 2);
       assert.equal(logger.errors[0].message, expected0);

@@ -1548,7 +1548,7 @@ describe('providing useful errors from resolve functions', () => {
       logger,
     });
     const testQuery = '{ species }';
-    const expected = 'Error in resolver RootQuery.species\noops!';
+    const expected = 'Error in resolver RootQuery.species: oops!';
     return graphql(jsSchema, testQuery).then(res => {
       assert.equal(logger.errors.length, 1);
       assert.equal(logger.errors[0].message, expected);

@@ -1,4 +1,5 @@
 import { defaultFieldResolver, GraphQLFieldResolver } from 'graphql';
+import { VError } from 'verror';
 import { ILogger } from '../Interfaces';
 
 /*
@@ -16,15 +17,11 @@ function decorateWithLogger(
   }
 
   const logError = (e: Error) => {
-    // TODO: clone the error properly
-    const newE = new Error();
-    newE.stack = e.stack;
-    /* istanbul ignore else: always get the hint from addErrorLoggingToSchema */
+    let newMessage = 'Error in resolver';
     if (hint) {
-      newE['originalMessage'] = e.message;
-      newE['message'] = `Error in resolver ${hint}\n${e.message}`;
+      newMessage = `${newMessage} ${hint}`;
     }
-    logger.log(newE);
+    logger.log(new VError(e, newMessage));
   };
 
   return (root, args, ctx, info) => {
