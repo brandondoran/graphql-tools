@@ -26,7 +26,7 @@
     "prerelease": "npm test",
     "prettier": "prettier --trailing-comma all --single-quote --write 'src/**/*.ts'",
     "release": "standard-version",
-    "postinstall": "npm run compile"
+    "postinstall": "npm i && npm run compile"
   },
   "repository": {
     "type": "git",
